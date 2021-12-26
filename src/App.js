@@ -2,13 +2,13 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {useOnHashChange} from "./useOnHashChange";
 
-const Steps = ({ steps }) => {
+const Steps = ({ steps, firstStep }) => {
     const [currentStep, setCurrentStep] = useState(1);
 
     const stepHandler = () => {
         let stepHash = (window.location.hash).slice(1);
         if (!stepHash) {
-            setCurrentStep(1);
+            setCurrentStep(firstStep);
         } else {
             stepHash = Number(stepHash);
             setCurrentStep(stepHash);
@@ -86,7 +86,7 @@ const steps = {
 export default function App() {
     return (
         <section className="App">
-            <Steps steps={steps}/>
+            <Steps steps={steps} firstStep={1} />
         </section>
     );
 }
